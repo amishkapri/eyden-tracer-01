@@ -1,5 +1,6 @@
 
 include/types.h
+.vs/
 
 # Ignore build directories
 [Dd]ebug

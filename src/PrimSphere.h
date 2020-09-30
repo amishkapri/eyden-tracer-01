@@ -28,8 +28,20 @@ public:
 
 	virtual bool intersect(Ray &ray) const override
 	{
-		// --- PUT YOUR CODE HERE ---
-		return false;
+		float a = ray.dir.dot(ray.dir);
+		float b = 2 * ray.dir.dot(ray.org - m_center);
+		float c = (ray.org - m_center).dot(ray.org - m_center) - m_radius * m_radius;
+		float check = b * b - (4 * a * c);
+		if (check < 0){
+			return false;
+		} 
+		float t = ((-b) + sqrt(check)) / a;
+
+		if (t < Epsilon || t > ray.t){
+			return false;
+		}
+		ray.t = t;
+		return true;
 	}
 	
 	

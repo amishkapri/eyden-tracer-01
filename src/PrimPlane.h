@@ -30,8 +30,24 @@ public:
 
 	virtual bool intersect(Ray& ray) const override
 	{
-		// --- PUT YOUR CODE HERE ---
-		return false;
+		float numerator = m_normal.dot(m_origin - ray.org);
+		float denominator = m_normal.dot(ray.dir);
+		float t;
+
+		if (denominator == 0){
+			return 0;
+		}
+		else{
+			t = numerator / denominator;
+		}
+
+		if (t < Epsilon || t > ray.t){
+			return false;
+		}
+
+		ray.t = t;
+
+		return true;
 	}
 	
 	
